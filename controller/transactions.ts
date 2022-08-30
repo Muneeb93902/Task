@@ -22,9 +22,13 @@
       * @returns 
       */
      getTypeTransactionCountBySKU: (arrayList: Array<Transactions>, type: string) => {
-        return arrayList.filter((arrayData) => arrayData.type === type)
+        const filteredTransactions = arrayList.filter((arrayData) => arrayData.type === type)
         .map(o => o.qty)
-        .reduce((a, c) => { return a + c });
+        
+        if(filteredTransactions.length > 0)
+            return filteredTransactions.reduce((a, c) => { return a + c });
+        else
+            return 0;
     }
  }
  
